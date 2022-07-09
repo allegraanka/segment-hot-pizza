@@ -1,4 +1,5 @@
 import styles from '../styles/Nav.module.css';
+import Link from 'next/link';
 
 const Nav = () => {
     return (
@@ -13,11 +14,25 @@ const Nav = () => {
             </div>
 
             <div className={styles.navTextContainer}>
-                <p className={styles.navText}>Order now!</p>
+                <Link href='/order'>
+                    <a className={styles.navText}>Order now!</a>
+                </Link>
                 <p className={styles.navText}>013 946 8274</p>
             </div>
 
-            <div className={styles.item}>thing</div>
+            <div className={styles.item}>
+                <ul className={styles.navList}>
+                    <li className={styles.navListItem}>Home</li>
+                    <li className={styles.navListItem}>Merch</li>
+                    <li className={styles.navListItem}>Menu</li>
+                    <li className={styles.navListItem}>Events</li>
+                    <li className={styles.navListItem}>Blog</li>
+                </ul>
+            </div>
+            <div className={styles.cartContainer}>
+                <p className={styles.cartCounter}>2</p>
+                <p className={styles.cartIcon}>Cart</p>
+            </div>
         </div>
     );
 }

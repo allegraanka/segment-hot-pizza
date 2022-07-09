@@ -21,7 +21,18 @@ p {
   padding: 0px;
 }
 
+ul {
+  font-family: 'Roboto Mono', monospace;
+  list-style-type: none;
+}
+
+li {
+  display: inline;
+  margin: 0px 10px;
+}
+
 a {
+  font-family: 'Roboto Mono', monospace;
   color: inherit;
   text-decoration: none;
 }
