@@ -1,67 +1,94 @@
 import styles from '../styles/OrderForm.module.css';
+import { Component } from 'react';
 
-const OrderForm = () => {
-    return (
-        <div className={styles.container}>
-            <h1 className={styles.formTitle}>Start an order</h1>
+class OrderForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { price: '' };
+        this.onChangeValue = this.onChangeValue.bind(this);
+    }
 
-            <form action='/api/orderForm' method='POST'>
-                <fieldset>
-                    <legend>Service Method</legend>
-                    <input type='radio' id='delivery' name='serviceMethod' value='delivery' className={styles.input}></input>
-                    <label htmlFor='serviceMethod' className={styles.label}>Delivery</label>
-                    <input type='radio' id='carryout' name='serviceMethod' value='carryout' className={styles.input}></input>
-                    <label htmlFor='serviceMethod' className={styles.label}>Carryout</label>
-                </fieldset>
+    onChangeValue(event) {
+        console.log('pizza size ', event.target.value);
 
-                <div className={styles.locationContainer}>
-                    <p>Location</p>
-                    <label htmlFor='address' className={styles.label}>Street Address</label>
-                    <input type='text' id='address' name='address' className={styles.input}></input>
-                    <label htmlFor='city' className={styles.label}>City</label>
-                    <input type='text' id='city' name='city' className={styles.input}></input>
-                    <label htmlFor='state' className={styles.label}>State</label>
-                    <input type='text' id='state' name='state' className={styles.input}></input>
-                    <label htmlFor='zip' className={styles.label}>Zip Code</label>
-                    <input type='text' id='zip' name='zip' className={styles.input}></input>
-                </div>
+        switch (event.target.value) {
+            case 'small':
+                this.setState({ price: '$12' });
+                break;
+            case 'medium':
+                this.setState({ price: '$16' });
+                break;
+            case 'large':
+                this.setState({ price: '$20' });
+                break;
+        }
+    }
 
-                <fieldset>
-                    <legend>Order Time</legend>
-                    <input type='radio' id='now' name='orderTime' value='now' className={styles.input}></input>
-                    <label htmlFor='orderTime' className={styles.label}>Now</label>
-                    <input type='radio' id='later' name='orderTime' value='later' className={styles.input}></input>
-                    <label htmlFor='orderTime' className={styles.label}>Later</label>
-                </fieldset>
+    render() {
+        return (
+            <div className={styles.container}>
+                <h1 className={styles.formTitle}>Start an order</h1>
 
-                <fieldset>
-                    <legend>Pizza Size</legend>
-                    <input type='radio' name='size' value='small' className={styles.input}></input>
-                    <label htmlFor='size' className={styles.label}>Small</label>
-                    <input type='radio' name='size' value='medium' className={styles.input}></input>
-                    <label htmlFor='size' className={styles.label}>Medium</label>
-                    <input type='radio' name='size' value='large' className={styles.input}></input>
-                    <label htmlFor='size' className={styles.label}>Large</label>
-                </fieldset>
+                <form action='/api/orderForm' method='POST'>
+                    <fieldset>
+                        <legend>Service Method</legend>
+                        <input type='radio' id='delivery' name='serviceMethod' value='delivery' className={styles.input}></input>
+                        <label htmlFor='serviceMethod' className={styles.label}>Delivery</label>
+                        <input type='radio' id='carryout' name='serviceMethod' value='carryout' className={styles.input}></input>
+                        <label htmlFor='serviceMethod' className={styles.label}>Carryout</label>
+                    </fieldset>
 
-                <fieldset>
-                    <legend>Toppings</legend>
-                    <input type='checkbox' id='topping' name='toppings' value='pepperoni' className={styles.input}></input>
-                    <label htmlFor='topping' className={styles.label}>Pepperoni</label>
-                    <input type='checkbox' id='topping' name='toppings' value='mushrooms' className={styles.input}></input>
-                    <label htmlFor='topping' className={styles.label}>Mushrooms</label>
-                    <input type='checkbox' id='topping' name='toppings' value='sausage' className={styles.input}></input>
-                    <label htmlFor='topping' className={styles.label}>Sausage</label>
-                    <input type='checkbox' id='topping' name='toppings' value='veganCheese' className={styles.input}></input>
-                    <label htmlFor='topping' className={styles.label}>Vegan Cheese</label>
-                    <input type='checkbox' id='topping' name='toppings' value='Olives' className={styles.input}></input>
-                    <label htmlFor='topping' className={styles.label}>Olives</label>
-                </fieldset>
+                    <div className={styles.locationContainer}>
+                        <p>Location</p>
+                        <label htmlFor='address' className={styles.label}>Street Address</label>
+                        <input type='text' id='address' name='address' className={styles.input}></input>
+                        <label htmlFor='city' className={styles.label}>City</label>
+                        <input type='text' id='city' name='city' className={styles.input}></input>
+                        <label htmlFor='state' className={styles.label}>State</label>
+                        <input type='text' id='state' name='state' className={styles.input}></input>
+                        <label htmlFor='zip' className={styles.label}>Zip Code</label>
+                        <input type='text' id='zip' name='zip' className={styles.input}></input>
+                    </div>
 
-                <input type='submit' value='Checkout' />
-            </form>
-        </div>
-    );
+                    <fieldset>
+                        <legend>Order Time</legend>
+                        <input type='radio' id='now' name='orderTime' value='now' className={styles.input}></input>
+                        <label htmlFor='orderTime' className={styles.label}>Now</label>
+                        <input type='radio' id='later' name='orderTime' value='later' className={styles.input}></input>
+                        <label htmlFor='orderTime' className={styles.label}>Later</label>
+                    </fieldset>
+
+                    <fieldset onChange={this.onChangeValue}>
+                        <legend>Pizza Size</legend>
+                        <input type='radio' name='size' value='small' className={styles.input}></input>
+                        <label htmlFor='size' className={styles.label}>Small</label>
+                        <input type='radio' name='size' value='medium' className={styles.input}></input>
+                        <label htmlFor='size' className={styles.label}>Medium</label>
+                        <input type='radio' name='size' value='large' className={styles.input}></input>
+                        <label htmlFor='size' className={styles.label}>Large</label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Toppings</legend>
+                        <input type='checkbox' id='topping' name='toppings' value='pepperoni' className={styles.input}></input>
+                        <label htmlFor='topping' className={styles.label}>Pepperoni</label>
+                        <input type='checkbox' id='topping' name='toppings' value='mushrooms' className={styles.input}></input>
+                        <label htmlFor='topping' className={styles.label}>Mushrooms</label>
+                        <input type='checkbox' id='topping' name='toppings' value='sausage' className={styles.input}></input>
+                        <label htmlFor='topping' className={styles.label}>Sausage</label>
+                        <input type='checkbox' id='topping' name='toppings' value='veganCheese' className={styles.input}></input>
+                        <label htmlFor='topping' className={styles.label}>Vegan Cheese</label>
+                        <input type='checkbox' id='topping' name='toppings' value='olives' className={styles.input}></input>
+                        <label htmlFor='topping' className={styles.label}>Olives</label>
+                    </fieldset>
+
+                    <input type='hidden' id='price' name='price' value={this.state.price} />
+
+                    <input type='submit' value='Checkout' />
+                </form>
+            </div>
+        );
+    }
 }
 
 export default OrderForm;
