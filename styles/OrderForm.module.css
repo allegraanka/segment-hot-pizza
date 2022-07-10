@@ -1,0 +1,15 @@
+.input,
+.label {
+    font-family: 'Roboto Mono', monospace;
+}
+
+.container {
+    margin: 25px auto;
+    width: 50%;
+}
+
+.locationContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 25px auto;
+}
