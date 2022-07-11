@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import * as snippet from '@segment/snippet'
+import * as snippet from '@segment/snippet';
 
 const { SEGMENT_WRITE_KEY, NODE_ENV } = process.env;
 
